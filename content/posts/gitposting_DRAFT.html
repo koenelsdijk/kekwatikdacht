@@ -1,0 +1,21 @@
+<p>Ik heb nog niet zo'n duidelijk beeld van hoe ik het in deze post ga brengen, maar ik ben bezig de koppeling van posts die ik, zoals nu, in de ghost editor schrijf, met de git repository die ik hiervoor heb aangemaakt. Als eerste stap heb ik een bash-script gemaakt (ik wilde schrijven 'geschreven', maar dat voelt niet helemaal kloppend met de hulp van <a href="https://huggingface.co/Qwen/Qwen2.5-Coder-14B-Instruct-GGUF#qwen25-coder-14b-instruct-gguf" rel="noreferrer">een LLM</a>) dat de html van alle posts uit de json van de export in html-bestanden zet. Ik heb nu nog handmatig de backup json gedownload, het script gedraaid en de gegenereerde bestanden toegevoegd aan de repository. Mijn plan is om dat allemaal automatisch op de server te laten plaatsvinden. Periodiek of, bij voorkeur, getriggerd door het bewerken en/of publiceren van een post. Ook zou ik er graag op github beter leesbare markdown-bestanden van willen maken. </p><p><a href="https://github.com/koenelsdijk/kekwatikdacht/blob/main/extract_posts.sh" rel="noreferrer"><code>extract-posts.sh</code></a></p><pre><code>#!/bin/bash
+JSON_DATA=$(cat "test.json")
+
+# Use jq to parse and extract data
+jq_output=$(echo "$JSON_DATA" | jq -r '
+  .db[0].data.posts[] | [{
+    filename: (if .status == "draft" then (.slug + "_DRAFT") else .slug end + ".html"),
+    content: .html,
+    type: .type
+  }]
+')
+
+echo "$jq_output" | jq -c '.[]' | while read item; do
+  filename=$(echo "$item" | jq -r '.filename')
+  content=$(echo "$item" | jq -r '.content')
+  dir=$(echo "$item" | jq -r '.type')s # &lt;- 's' to create plural. Type can be "post" or "page".
+
+  mkdir -p "$dir"
+  echo "$content" &gt; "$dir/$filename"
+  echo "wrote to $dir/$filename"
+done</code></pre>
