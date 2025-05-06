@@ -33,38 +33,23 @@ public sealed class TypeRegistrar(IServiceCollection builder) : ITypeRegistrar
 
   public void RegisterLazy(Type service, Func<object> func)
   {
-    if (func is null)
-    {
-      throw new ArgumentNullException(nameof(func));
-    }
-
+    ArgumentNullException.ThrowIfNull(func);
     builder.AddSingleton(service, (provider) => func());
   }
 }
-public sealed class TypeResolver : ITypeResolver, IDisposable
+public sealed class TypeResolver(IServiceProvider? provider) : ITypeResolver, IDisposable
 {
-  private readonly IServiceProvider _provider;
+  private readonly IServiceProvider _provider = provider ?? throw new ArgumentNullException(nameof(provider));
 
-  public TypeResolver(IServiceProvider? provider)
-  {
-    _provider = provider ?? throw new ArgumentNullException(nameof(provider));
-  }
-
-  public object? Resolve(Type? type)
-  {
-    if (type == null)
-    {
-      return null;
-    }
-
-    return _provider.GetService(type);
-  }
+  public object? Resolve(Type? type) => type is null 
+      ? null 
+      : _provider.GetService(type);
 
   public void Dispose()
   {
     if (_provider is IDisposable disposable)
     {
-      disposable?.Dispose();
+      disposable.Dispose();
     }
   }
 }
