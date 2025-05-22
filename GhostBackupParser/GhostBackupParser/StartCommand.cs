@@ -11,6 +11,8 @@ public class StartCommand : AsyncCommand<StartCommand.Settings>
   {
     [CommandArgument(0, "<json>")]
     public string BackupJson { get; set; }
+    [CommandOption("-c|--content-dir")]
+    public string? ContentRoot { get; set; }
   }
 
   public override async Task<int> ExecuteAsync(CommandContext context, Settings settings)
@@ -33,6 +35,7 @@ public class StartCommand : AsyncCommand<StartCommand.Settings>
     {
       var filename = post.Status == "draft" ? $"{post.Slug}_DRAFT.html" : $"{post.Slug}.html";
       var dir = $"{post.Type}s"; // Create plural by appending 's'
+      if(!string.IsNullOrWhiteSpace(settings.ContentRoot)) dir = Path.Combine(settings.ContentRoot, dir);
 
       Directory.CreateDirectory(dir);
       await File.WriteAllTextAsync($"{dir}/{filename}", post.Html);
