@@ -1,14 +1,50 @@
-<h2 id="inhoud">Inhoud</h2><p><em>Ook dit is een onderdeel dat ik nog wil automatiseren. Voor nu doe ik het nog maar even met de hand, min of meer zoals </em><a href="https://www.freecodecamp.org/news/how-to-add-a-table-of-contents-to-your-article-on-ghost/" rel="noreferrer"><em>hier </em></a><em>beschreven. </em></p><ul><li><a href="#poging-1-bash-jq" rel="noreferrer">Poging 1: bash &amp;&amp; jq</a></li><li><a href="#poging-2-c-console-app" rel="noreferrer">Poging 2: C# console app</a></li></ul><hr><h2 id="poging-1-bash-jq">Poging 1: bash &amp;&amp; jq</h2><p>Ik heb nog niet zo'n duidelijk beeld van hoe ik het in deze post ga brengen, maar ik ben bezig de koppeling van posts die ik, zoals nu, in de ghost editor schrijf, met <a href="https://github.com/koenelsdijk/kekwatikdacht" rel="noreferrer">de git repository</a> die ik hiervoor heb aangemaakt. Als eerste stap heb ik <a href="https://github.com/koenelsdijk/kekwatikdacht/commit/a839aee8e20877dced67f2655054efeb9d2d93e0">een bash-script gemaakt</a> (ik wilde schrijven 'geschreven', maar dat voelt niet helemaal kloppend met de hulp van <a href="https://huggingface.co/Qwen/Qwen2.5-Coder-14B-Instruct-GGUF#qwen25-coder-14b-instruct-gguf" rel="noreferrer">een LLM</a>) dat de html van alle posts uit de json van de export in html-bestanden zet. Ik heb nu nog handmatig de backup json gedownload, het script gedraaid en <a href="https://github.com/koenelsdijk/kekwatikdacht/commit/189028356b10d6873343fa37aaa2091c6d0e4bd9">de gegenereerde bestanden toegevoegd aan de repository</a>. Mijn plan is om dat allemaal automatisch op de server te laten plaatsvinden. Periodiek of, bij voorkeur, getriggerd door het bewerken en/of publiceren van een post. Ook zou ik er graag op github beter leesbare markdown-bestanden van willen maken. </p><div class="kg-card kg-toggle-card" data-kg-toggle-state="close">
-            <div class="kg-toggle-heading">
-                <h4 class="kg-toggle-heading-text"><a href="https://github.com/koenelsdijk/kekwatikdacht/blob/main/extract_posts.sh" rel="noreferrer"><code spellcheck="false" style="white-space: pre-wrap;"><span>extract-posts.sh</span></code></a></h4>
-                <button class="kg-toggle-card-icon" aria-label="Expand toggle to read content">
-                    <svg id="Regular" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path class="cls-1" d="M23.25,7.311,12.53,18.03a.749.749,0,0,1-1.06,0L.75,7.311"></path>
-                    </svg>
-                </button>
-            </div>
-            <div class="kg-toggle-content"><p dir="ltr"><i><em class="italic" style="white-space: pre-wrap;">Het was mijn bedoeling onderstaand codeblok hier binnen de toggle te plaatsen, maar ik zie nog geen mogelijkheid in de ghost editor om dat voor elkaar te krijgen. Dat ga ik later uitzoeken. </em></i></p></div>
-        </div><figure class="kg-card kg-code-card"><pre><code>#!/bin/bash
+<html>
+  <body>
+    <h2 id="inhoud">Inhoud</h2>
+    <p>
+      <em>Ook dit is een onderdeel dat ik nog wil automatiseren. Voor nu doe ik het nog maar even met de hand, min of meer zoals </em>
+      <a href="https://www.freecodecamp.org/news/how-to-add-a-table-of-contents-to-your-article-on-ghost/" rel="noreferrer">
+        <em>hier </em>
+      </a>
+      <em>beschreven. </em>
+    </p>
+    <ul>
+      <li>
+        <a href="#poging-1-bash-jq" rel="noreferrer">Poging 1: bash &amp;&amp; jq</a>
+      </li>
+      <li>
+        <a href="#poging-2-c-console-app" rel="noreferrer">Poging 2: C# console app</a>
+      </li>
+    </ul>
+    <hr />
+    <h2 id="poging-1-bash-jq">Poging 1: bash &amp;&amp; jq</h2>
+    <p>Ik heb nog niet zo'n duidelijk beeld van hoe ik het in deze post ga brengen, maar ik ben bezig de koppeling van posts die ik, zoals nu, in de ghost editor schrijf, met <a href="https://github.com/koenelsdijk/kekwatikdacht" rel="noreferrer">de git repository</a> die ik hiervoor heb aangemaakt. Als eerste stap heb ik <a href="https://github.com/koenelsdijk/kekwatikdacht/commit/a839aee8e20877dced67f2655054efeb9d2d93e0">een bash-script gemaakt</a> (ik wilde schrijven 'geschreven', maar dat voelt niet helemaal kloppend met de hulp van <a href="https://huggingface.co/Qwen/Qwen2.5-Coder-14B-Instruct-GGUF#qwen25-coder-14b-instruct-gguf" rel="noreferrer">een LLM</a>) dat de html van alle posts uit de json van de export in html-bestanden zet. Ik heb nu nog handmatig de backup json gedownload, het script gedraaid en <a href="https://github.com/koenelsdijk/kekwatikdacht/commit/189028356b10d6873343fa37aaa2091c6d0e4bd9">de gegenereerde bestanden toegevoegd aan de repository</a>. Mijn plan is om dat allemaal automatisch op de server te laten plaatsvinden. Periodiek of, bij voorkeur, getriggerd door het bewerken en/of publiceren van een post. Ook zou ik er graag op github beter leesbare markdown-bestanden van willen maken. </p>
+    <div class="kg-card kg-toggle-card" data-kg-toggle-state="close">
+      <div class="kg-toggle-heading">
+        <h4 class="kg-toggle-heading-text">
+          <a href="https://github.com/koenelsdijk/kekwatikdacht/blob/main/extract_posts.sh" rel="noreferrer">
+            <code spellcheck="false" style="white-space: pre-wrap;">
+              <span>extract-posts.sh</span>
+            </code>
+          </a>
+        </h4>
+        <button class="kg-toggle-card-icon" aria-label="Expand toggle to read content">
+          <svg id="Regular" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+            <path class="cls-1" d="M23.25,7.311,12.53,18.03a.749.749,0,0,1-1.06,0L.75,7.311"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="kg-toggle-content">
+        <p dir="ltr">
+          <i>
+            <em class="italic" style="white-space: pre-wrap;">Het was mijn bedoeling onderstaand codeblok hier binnen de toggle te plaatsen, maar ik zie nog geen mogelijkheid in de ghost editor om dat voor elkaar te krijgen. Dat ga ik later uitzoeken. </em>
+          </i>
+        </p>
+      </div>
+    </div>
+    <figure class="kg-card kg-code-card">
+      <pre>
+        <code>#!/bin/bash
 JSON_DATA=$(cat "test.json")
 
 # Use jq to parse and extract data
@@ -28,4 +64,15 @@ echo "$jq_output" | jq -c '.[]' | while read item; do
   mkdir -p "$dir"
   echo "$content" &gt; "$dir/$filename"
   echo "wrote to $dir/$filename"
-done</code></pre><figcaption><p dir="ltr"><span style="white-space: pre-wrap;">bash</span></p></figcaption></figure><hr><h2 id="poging-2-c-console-app">Poging 2: C# console app</h2>
+done</code>
+      </pre>
+      <figcaption>
+        <p dir="ltr">
+          <span style="white-space: pre-wrap;">bash</span>
+        </p>
+      </figcaption>
+    </figure>
+    <hr />
+    <h2 id="poging-2-c-console-app">Poging 2: C# console app</h2>
+  </body>
+</html>
