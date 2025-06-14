@@ -18,7 +18,7 @@
     </ul>
     <hr />
     <h2 id="poging-1-bash-jq">Poging 1: bash &amp;&amp; jq</h2>
-    <p>Ik heb nog niet zo'n duidelijk beeld van hoe ik het in deze post ga brengen, maar ik ben bezig de koppeling van posts die ik, zoals nu, in de ghost editor schrijf, met <a href="https://github.com/koenelsdijk/kekwatikdacht" rel="noreferrer">de git repository</a> die ik hiervoor heb aangemaakt. Als eerste stap heb ik <a href="https://github.com/koenelsdijk/kekwatikdacht/commit/a839aee8e20877dced67f2655054efeb9d2d93e0">een bash-script gemaakt</a> (ik wilde schrijven 'geschreven', maar dat voelt niet helemaal kloppend met de hulp van <a href="https://huggingface.co/Qwen/Qwen2.5-Coder-14B-Instruct-GGUF#qwen25-coder-14b-instruct-gguf" rel="noreferrer">een LLM</a>) dat de html van alle posts uit de json van de export in html-bestanden zet. Ik heb nu nog handmatig de backup json gedownload, het script gedraaid en <a href="https://github.com/koenelsdijk/kekwatikdacht/commit/189028356b10d6873343fa37aaa2091c6d0e4bd9">de gegenereerde bestanden toegevoegd aan de repository</a>. Mijn plan is om dat allemaal automatisch op de server te laten plaatsvinden. Periodiek of, bij voorkeur, getriggerd door het bewerken en/of publiceren van een post. Ook zou ik er graag op github beter leesbare markdown-bestanden van willen maken. </p>
+    <p>Ik heb nog niet zo'n duidelijk beeld van hoe ik het in deze post ga brengen, maar ik ben bezig de koppeling van posts die ik, zoals nu, in de ghost editor schrijf, met <a href="https://github.com/koenelsdijk/kekwatikdacht" rel="noreferrer">de git repository</a> die ik hiervoor heb aangemaakt. Als eerste stap heb ik <a href="https://github.com/koenelsdijk/kekwatikdacht/commit/a839aee8e20877dced67f2655054efeb9d2d93e0">een bash-script gemaakt</a> (ik wilde schrijven 'geschreven', maar dat voelt niet helemaal kloppend met de hulp van <a href="https://huggingface.co/Qwen/Qwen2.5-Coder-14B-Instruct-GGUF#qwen25-coder-14b-instruct-gguf" rel="noreferrer">een LLM</a>) dat de html van alle posts uit de <a href="https://nl.wikipedia.org/wiki/JSON">JSON</a> van de export in html-bestanden zet. Ik heb nu nog handmatig de <a href="https://ghost.org/help/exports/#content">backup JSON gedownload</a>, het script gedraaid en <a href="https://github.com/koenelsdijk/kekwatikdacht/commit/189028356b10d6873343fa37aaa2091c6d0e4bd9">de gegenereerde bestanden toegevoegd aan de repository</a>. Mijn plan is om dat allemaal automatisch op de server te laten plaatsvinden. Periodiek of, bij voorkeur, getriggerd door het bewerken en/of publiceren van een post. Ook zou ik er graag op github beter leesbare <a href="https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax">markdown</a>-bestanden van willen maken. </p>
     <div class="kg-card kg-toggle-card" data-kg-toggle-state="close">
       <div class="kg-toggle-heading">
         <h4 class="kg-toggle-heading-text">
@@ -35,7 +35,7 @@
         </button>
       </div>
       <div class="kg-toggle-content">
-        <p dir="ltr">
+        <p>
           <i>
             <em class="italic" style="white-space: pre-wrap;">Het was mijn bedoeling onderstaand codeblok hier binnen de toggle te plaatsen, maar ik zie nog geen mogelijkheid in de ghost editor om dat voor elkaar te krijgen. Dat ga ik later uitzoeken. </em>
           </i>
@@ -67,12 +67,12 @@ echo "$jq_output" | jq -c '.[]' | while read item; do
 done</code>
       </pre>
       <figcaption>
-        <p dir="ltr">
+        <p>
           <span style="white-space: pre-wrap;">bash</span>
         </p>
       </figcaption>
     </figure>
-    <hr />
+    <p>Dit was mijn eerste kennismaking met <a href="https://github.com/jqlang/jq">jq</a>, dat ik alleen nog van naam kende. Mijn eerste indruk: heel nuttig om in de terminal of een script met json data te werken. Het werkte prima voor mijn doeleinden, totdat ik wat verder kwam met deze post, de eerste waarin wat meer gebeurt dan platte tekst en een horizontale lijn. Met name het codeblok met het script hierboven bleek problematisch voor het script. 🤔 Na een aantal probeersels om het script volledig werkend te krijgen met deze post, besloot ik het anders aan te passen. Het was tijd voor</p>
     <h2 id="poging-2-c-console-app">Poging 2: C# console app</h2>
   </body>
 </html>
